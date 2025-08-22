@@ -1,0 +1,60 @@
+// Use theme file
+@use '../../../assets/themes/theme' as *;
+
+.hero {
+  .banner {
+    padding: 90px;
+    border-radius: 30px;
+    background-image: url("../../../assets/images/banner/banner.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 30px;
+    margin-bottom: 55px;
+    .welcome-text {
+      h1 {
+        font-size: 72px;
+        font-weight: bold;
+        line-height: 72px;
+        margin-bottom: 31px;
+      }
+      p{
+        font-size: 30px;
+        line-height: 24px;
+        font-weight: normal;
+        margin-bottom: 65px;
+      }
+    }
+    .newsletter{
+        display: flex;
+        align-items: center;
+        position: relative;
+        .input{
+            position: relative;
+            input{
+                padding: 18px 45px;
+                border-radius: 50px;
+                border: none;
+                min-width: 450px;
+                font-size: 16px;
+                &:focus{
+                    outline: none;
+                }
+            }
+            i{
+                position: absolute;
+                top: 50%;
+                left: 20px;
+                transform: translateY(-50%);
+            }
+            .btn{
+                background-color: $col-primary !important;
+                padding: 18px 30px;
+                border-radius: 50px;
+                border: none;
+                position: absolute;
+                left: calc(450px - 128.36px);
+            }
+        }
+    }
+  }
+}

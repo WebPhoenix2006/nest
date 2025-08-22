@@ -1,0 +1,20 @@
+<div class="dropdown-container" [class.ellipsis]="ellipsis">
+  <div class="dropdown" (click)="toggleDropdown()">
+    <ng-container *ngIf="ellipsis; else normalToggle">
+      <span class="dots">⋮</span>
+    </ng-container>
+
+    <ng-template #normalToggle>
+      <span class="placeholder-text">{{ placeholder }}</span>
+      <span class="ms-2">
+        <svg-icons name="angle-down"></svg-icons>
+      </span>
+    </ng-template>
+  </div>
+
+  <ul class="dropdownmenu" *ngIf="isOpen">
+    <li *ngFor="let option of options" (click)="selectOption(option)">
+      <span>{{ option.label }}</span>
+    </li>
+  </ul>
+</div>

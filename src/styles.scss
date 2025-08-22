@@ -1,1 +1,24 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  overflow-x: hidden;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+* {
+  margin: 0;
+}
+p,
+strong,
+a,
+span,
+small,
+pre {
+  font-family: "Lato", sans-serif !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Quicksand", sans-serif;
+}

@@ -1,0 +1,692 @@
+@use "../../../../assets/themes/theme" as *;
+
+// Responsive breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);
+
+// Mixin for media queries
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: #{map-get($breakpoints, $breakpoint) - 1px}) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-from($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  }
+}
+
+// Top Nav
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px;
+
+  @include respond-to(lg) {
+    padding: 8px;
+  }
+
+  @include respond-to(md) {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 5px;
+  }
+
+  // leftside
+  .leftside {
+    @include respond-to(md) {
+      order: 2;
+    }
+
+    ul {
+      display: flex;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+
+      @include respond-to(sm) {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      li {
+        position: relative;
+
+        &::after {
+          content: "";
+          display: flex;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 15px;
+          width: 1px;
+          background-color: #ccc;
+          right: -1px;
+
+          @include respond-to(sm) {
+            display: none;
+          }
+        }
+
+        &:last-child::after {
+          display: none;
+        }
+
+        a {
+          display: flex;
+          text-decoration: none;
+          margin: 0 10px;
+          color: $col-secondary;
+          font-size: 14px;
+
+          @include respond-to(lg) {
+            margin: 0 8px;
+            font-size: 13px;
+          }
+
+          @include respond-to(sm) {
+            margin: 0 5px;
+            font-size: 12px;
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  // rightside
+  .rightside {
+    display: flex;
+    align-items: center;
+
+    @include respond-to(md) {
+      order: 1;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @include respond-to(sm) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    p {
+      margin-bottom: 0;
+      margin-right: 12px;
+      display: flex;
+      color: $col-secondary;
+      font-size: 14px;
+
+      @include respond-to(lg) {
+        margin-right: 8px;
+        font-size: 13px;
+      }
+
+      @include respond-to(md) {
+        margin-right: 0;
+        text-align: center;
+      }
+
+      @include respond-to(sm) {
+        font-size: 12px;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 10px;
+      }
+
+      a {
+        display: flex;
+        text-decoration: none;
+        color: $col-primary;
+        margin-left: 5px;
+
+        @include respond-to(sm) {
+          margin-left: 0;
+        }
+      }
+    }
+
+    ul {
+      display: flex;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+
+      li {
+        position: relative;
+
+        &::after {
+          content: "";
+          display: flex;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 15px;
+          width: 1px;
+          background-color: #ccc;
+          right: -1px;
+        }
+
+        &:last-child::after {
+          display: none;
+        }
+
+        a {
+          display: flex;
+          margin: 0 10px;
+          text-decoration: none;
+          color: $col-secondary;
+          font-size: 14px;
+
+          @include respond-to(lg) {
+            margin: 0 8px;
+            font-size: 13px;
+          }
+
+          @include respond-to(sm) {
+            margin: 0 5px;
+            font-size: 12px;
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Main Nav
+header {
+  .navbar {
+    padding: 30px 0;
+
+    @include respond-to(lg) {
+      padding: 20px 0;
+    }
+
+    @include respond-to(md) {
+      padding: 15px 0;
+    }
+
+    .container-fluid {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      @include respond-to(xl) {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      @include respond-to(lg) {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      @include respond-to(md) {
+        gap: 15px;
+      }
+    }
+
+    .navbar-brand {
+      flex-shrink: 0;
+
+      @include respond-to(lg) {
+        order: 1;
+      }
+
+      img {
+        max-height: 50px;
+        width: auto;
+
+        @include respond-to(md) {
+          max-height: 40px;
+        }
+
+        @include respond-to(sm) {
+          max-height: 35px;
+        }
+      }
+    }
+
+    .search-field {
+      display: flex;
+      align-items: center;
+      padding: 16px 0;
+      border: 1px solid $col-primary;
+      border-radius: 8px;
+      flex: 1;
+      max-width: 600px;
+
+      @include respond-to(xl) {
+        max-width: 500px;
+      }
+
+      @include respond-to(lg) {
+        order: 3;
+        width: 100%;
+        max-width: none;
+        padding: 12px 0;
+      }
+
+      @include respond-to(md) {
+        padding: 10px 0;
+      }
+
+      @include respond-to(sm) {
+        flex-direction: column;
+        padding: 8px;
+        gap: 8px;
+      }
+
+      .categories {
+        @include respond-to(sm) {
+          width: 100%;
+        }
+
+        ::ng-deep .dropdown-container {
+          @include respond-to(sm) {
+            width: 100%;
+          }
+        }
+      }
+
+      .input {
+        display: flex;
+        align-items: center;
+        position: relative;
+        flex: 1;
+
+        @include respond-to(sm) {
+          width: 100%;
+        }
+
+        input {
+          position: relative;
+          border: none;
+          width: 100%;
+          padding: 8px 40px 8px 15px;
+
+          @include respond-to(lg) {
+            width: 400px;
+          }
+
+          @include respond-to(md) {
+            width: 300px;
+          }
+
+          @include respond-to(sm) {
+            width: 100%;
+            padding: 10px 40px 10px 15px;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+
+        .search {
+          position: absolute;
+          top: 50%;
+          right: 15px;
+          transform: translateY(-50%);
+          cursor: pointer;
+
+          @include respond-to(sm) {
+            right: 15px;
+          }
+        }
+      }
+    }
+
+    .more-header-nav {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      flex-shrink: 0;
+
+      @include respond-to(xl) {
+        gap: 20px;
+      }
+
+      @include respond-to(lg) {
+        order: 2;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      @include respond-to(md) {
+        gap: 10px;
+      }
+
+      @include respond-to(sm) {
+        gap: 8px;
+        justify-content: space-around;
+        width: 100%;
+      }
+
+      div {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        @include respond-to(sm) {
+          flex-direction: column;
+          gap: 3px;
+          text-align: center;
+          min-width: 60px;
+        }
+
+        a {
+          display: flex;
+          text-decoration: none;
+          color: $col-secondary;
+          font-size: 14px;
+
+          @include respond-to(md) {
+            font-size: 13px;
+          }
+
+          @include respond-to(sm) {
+            font-size: 11px;
+          }
+
+          span {
+            @include respond-to(sm) {
+              display: block;
+              margin-top: 2px;
+            }
+          }
+        }
+
+        svg-icons {
+          @include respond-to(sm) {
+            transform: scale(0.8);
+          }
+        }
+      }
+
+      .location-btn {
+        @include respond-to(sm) {
+          display: none;
+        }
+
+        .location {
+          display: flex;
+          gap: 5px;
+          padding: 14px 20px;
+          border-radius: 8px;
+          color: $col-primary;
+          background-color: #fff;
+          border: 1px solid $border-col;
+          cursor: pointer;
+
+          @include respond-to(lg) {
+            padding: 10px 15px;
+            font-size: 13px;
+          }
+
+          @include respond-to(md) {
+            padding: 8px 12px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  .sub-nav {
+    padding: 14.5px 0;
+
+    @include respond-to(lg) {
+      padding: 10px 0;
+    }
+
+    @include respond-to(md) {
+      display: none; // Hide sub-nav on mobile, or implement hamburger menu
+    }
+
+    .menus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include respond-to(xl) {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      @include respond-to(lg) {
+        justify-content: center;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .all-categories {
+        background-color: $col-primary;
+        width: fit-content;
+        border-radius: 8px;
+        padding: 7px 0;
+
+        @include respond-to(lg) {
+          order: 1;
+          margin-bottom: 10px;
+        }
+
+        ::ng-deep .dropdown-container {
+          .dropdownmenu {
+            width: 100%;
+          }
+
+          .dropdown {
+            .placeholder-text {
+              color: #fff !important;
+            }
+
+            ::ng-deep svg-icons {
+              svg {
+                path {
+                  fill: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .subnav-nav {
+        display: flex;
+        align-items: center;
+        gap: 33px;
+
+        @include respond-to(xl) {
+          gap: 20px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        @include respond-to(lg) {
+          order: 2;
+          gap: 15px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .nav-link {
+          a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            color: $col-secondary;
+            font-size: 14px;
+            white-space: nowrap;
+
+            @include respond-to(lg) {
+              font-size: 13px;
+            }
+          }
+        }
+      }
+
+      .support {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+
+        @include respond-to(xl) {
+          order: 3;
+        }
+
+        @include respond-to(lg) {
+          order: 3;
+          margin-top: 10px;
+        }
+
+        .phone {
+          display: flex;
+          flex-direction: column;
+
+          a {
+            color: $col-primary;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+
+            @include respond-to(lg) {
+              font-size: 14px;
+            }
+          }
+
+          small {
+            font-size: 12px;
+            color: $col-secondary;
+
+            @include respond-to(lg) {
+              font-size: 11px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile-specific hamburger menu (optional enhancement)
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: $col-primary;
+  cursor: pointer;
+
+  @include respond-to(md) {
+    display: block;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1001;
+  }
+}
+
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+
+  &.active {
+    @include respond-to(md) {
+      display: block;
+    }
+  }
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 1001;
+  transition: right 0.3s ease;
+  padding: 60px 20px 20px;
+  overflow-y: auto;
+
+  &.active {
+    right: 0;
+  }
+
+  @include respond-to(md) {
+    display: block;
+  }
+
+  .mobile-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+
+      a {
+        text-decoration: none;
+        color: $col-secondary;
+        font-size: 16px;
+        display: block;
+        padding: 10px 0;
+
+        &:hover {
+          color: $col-primary;
+        }
+      }
+    }
+  }
+}
+
+// Hide/show elements at specific breakpoints
+.hide-mobile {
+  @include respond-to(md) {
+    display: none !important;
+  }
+}
+
+.hide-desktop {
+  display: none !important;
+
+  @include respond-to(md) {
+    display: block !important;
+  }
+}
+
+.hide-tablet {
+  @include respond-to(lg) {
+    @include respond-from(md) {
+      display: none !important;
+    }
+  }
+}

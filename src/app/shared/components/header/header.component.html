@@ -1,0 +1,212 @@
+<div class="top-nav-container border-bottom">
+  <div class="container-fluid px-5">
+    <div class="top-nav">
+      <!-- leftside of the topnav -->
+      <div class="leftside">
+        <ul>
+          <li>
+            <a routerLink="/">About Us</a>
+          </li>
+          <li>
+            <a routerLink="/" class="hide-mobile">My Account</a>
+          </li>
+          <li>
+            <a routerLink="/" class="hide-mobile">Wishlist</a>
+          </li>
+          <li>
+            <a routerLink="/">Order Tracking</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- rightside of the topnav -->
+      <div class="rightside">
+        <p>Need help? Call Us: <a routerLink="/" class="ms-2">+1800 900</a></p>
+
+        <ul>
+          <li>
+            <a routerLink="/" class="language">English</a>
+          </li>
+          <li>
+            <a routerLink="/" class="currency">USD</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Menu Toggle Button -->
+<button class="mobile-menu-toggle" (click)="toggleMobileMenu()">
+  <i class="fa fa-bars" *ngIf="!mobileMenuActive"></i>
+  <i class="fa fa-times" *ngIf="mobileMenuActive"></i>
+</button>
+
+<!-- Mobile Menu Overlay -->
+<div
+  class="mobile-menu-overlay"
+  [class.active]="mobileMenuActive"
+  (click)="toggleMobileMenu()"
+></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" [class.active]="mobileMenuActive">
+  <ul class="mobile-nav-list">
+    <li><a routerLink="/" (click)="closeMobileMenu()">Home</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">Deals</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">Shop</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">About</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">Vendors</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">Blog</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">Contact</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">My Account</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">Wishlist</a></li>
+    <li><a routerLink="/" (click)="closeMobileMenu()">Compare</a></li>
+  </ul>
+</div>
+
+<!-- Main Nav -->
+<header>
+  <div class="navbar border-bottom">
+    <div class="container-fluid px-5">
+      <div class="navbar-brand">
+        <a routerLink="/">
+          <img src="assets/images/logo/logo.png" alt="logo" class="img-fluid" />
+        </a>
+      </div>
+
+      <!-- Search field with categories dropdown -->
+      <div class="search-field">
+        <div class="categories">
+          <app-dropdown
+            [options]="categoryOptions"
+            placeholder="All Categories"
+            [ellipsis]="false"
+          />
+        </div>
+        <div class="input">
+          <input type="text" placeholder="Search for items" />
+          <div class="search">
+            <i class="fa fa-search"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- More header navigation cart, location, wishlist, etc -->
+      <div class="more-header-nav">
+        <div class="location-btn">
+          <button class="location">
+            <svg-icons name="location"></svg-icons>
+            <span>Your Location</span>
+            <svg-icons name="angle-down"></svg-icons>
+          </button>
+        </div>
+        <div class="compare">
+          <svg-icons name="rotate" />
+          <a routerLink="/">
+            <span>Compare</span>
+          </a>
+        </div>
+        <div class="wishlist">
+          <svg-icons name="heart" />
+          <a routerLink="/">
+            <span>Wishlist</span>
+          </a>
+        </div>
+        <div class="cart">
+          <svg-icons name="cart" />
+          <a routerLink="/">
+            <span>Cart</span>
+          </a>
+        </div>
+        <div class="profile">
+          <svg-icons name="user" />
+          <a routerLink="/">
+            <span>Account</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-nav">
+    <div class="container-fluid px-5">
+      <div class="menus">
+        <div class="all-categories">
+          <app-dropdown
+            [options]="categoryOptions"
+            placeholder="Browse All Categories"
+            [ellipsis]="false"
+          />
+        </div>
+        <ul class="subnav-nav">
+          <li class="nav-link">
+            <a routerLink="/">
+              <svg-icons name="fire"></svg-icons>
+              <span>Deals</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <app-dropdown
+              [options]="categoryOptions"
+              placeholder="Home"
+              [ellipsis]="false"
+            />
+          </li>
+          <li class="nav-link">
+            <a routerLink="/">
+              <span>About</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <app-dropdown
+              [options]="categoryOptions"
+              placeholder="Shop"
+              [ellipsis]="false"
+            />
+          </li>
+          <li class="nav-link">
+            <app-dropdown
+              [options]="categoryOptions"
+              placeholder="Vendors"
+              [ellipsis]="false"
+            />
+          </li>
+          <li class="nav-link hide-tablet">
+            <app-dropdown
+              [options]="categoryOptions"
+              placeholder="Megamenu"
+              [ellipsis]="false"
+            />
+          </li>
+          <li class="nav-link hide-tablet">
+            <app-dropdown
+              [options]="categoryOptions"
+              placeholder="Blog"
+              [ellipsis]="false"
+            />
+          </li>
+          <li class="nav-link hide-tablet">
+            <app-dropdown
+              [options]="categoryOptions"
+              placeholder="Pages"
+              [ellipsis]="false"
+            />
+          </li>
+          <li class="nav-link">
+            <a routerLink="/">
+              <span>Contact</span>
+            </a>
+          </li>
+        </ul>
+        <div class="support">
+          <svg-icons name="headphone"></svg-icons>
+          <div class="phone">
+            <a routerLink="/"> 1900 - 888 </a>
+            <small> 24/7 Support Center </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
