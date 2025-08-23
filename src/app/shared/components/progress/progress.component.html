@@ -1,0 +1,11 @@
+<div *ngIf="showLabel" class="progress-label">
+  <!-- <h4>Progress</h4> -->
+  <span>{{ value }}/{{ max }}</span>
+</div>
+<div class="progress-wrapper" [style.height]="height">
+  <div
+    class="progress-bar"
+    [style.width.%]="(value / max) * 100"
+    [style.backgroundColor]="color"
+  ></div>
+</div>

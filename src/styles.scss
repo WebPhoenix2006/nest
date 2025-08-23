@@ -1,3 +1,7 @@
+// Theme
+@use './assets/themes/theme' as *;
+@use './assets/themes/responsive' as *;
+
 body {
   overflow-x: hidden;
   height: 100vh;
@@ -12,7 +16,7 @@ a,
 span,
 small,
 pre {
-  font-family: "Lato", sans-serif !important;
+  font-family: "Lato", sans-serif;
 }
 h1,
 h2,
@@ -21,4 +25,231 @@ h4,
 h5,
 h6 {
   font-family: "Quicksand", sans-serif;
+}
+
+// Fill Colors
+.yellow{
+  background-color: $col-yellow;
+
+}
+.pink{
+  background-color: $col-pink;
+}
+.red-apple{
+  background-color: $col-red-apple;
+}
+.olive{
+  background-color: $col-olive;
+}
+.orange{
+  background-color: $col-orange;
+}
+.light-green{
+  background-color: $col-light-green;
+}
+
+// Section heading styles, with responsiveness
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0;
+
+  // Large desktop adjustments
+  @include respond-to(xl) {
+    margin: 25px 0;
+  }
+
+  // Large tablet adjustments
+  @include respond-to(lg) {
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  // Tablet adjustments
+  @include respond-to(md) {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    margin: 18px 0;
+  }
+
+  // Mobile adjustments
+  @include respond-to(sm) {
+    gap: 12px;
+    margin: 15px 0;
+  }
+
+  // Small mobile adjustments
+  @include respond-to(xs) {
+    gap: 10px;
+    margin: 12px 0;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 38px;
+    margin: 0;
+    white-space: nowrap;
+
+    // Large desktop
+    @include respond-to(xl) {
+      font-size: 28px;
+      line-height: 34px;
+    }
+
+    // Large tablet
+    @include respond-to(lg) {
+      font-size: 26px;
+      line-height: 32px;
+    }
+
+    // Tablet
+    @include respond-to(md) {
+      font-size: 24px;
+      line-height: 30px;
+      white-space: normal;
+    }
+
+    // Mobile
+    @include respond-to(sm) {
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    // Small mobile
+    @include respond-to(xs) {
+      font-size: 20px;
+      line-height: 26px;
+    }
+  }
+
+  .categories {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+    flex-wrap: wrap;
+
+    // Large desktop
+    @include respond-to(xl) {
+      gap: 22px;
+    }
+
+    // Large tablet
+    @include respond-to(lg) {
+      gap: 18px;
+      justify-content: center;
+    }
+
+    // Tablet
+    @include respond-to(md) {
+      justify-content: center;
+      width: 100%;
+      gap: 15px;
+    }
+
+    // Mobile
+    @include respond-to(sm) {
+      gap: 12px;
+      justify-content: center;
+    }
+
+    // Small mobile
+    @include respond-to(xs) {
+      gap: 8px;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: $col-secondary;
+      transition: 0.3s all;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      white-space: nowrap;
+
+      // Large desktop
+      @include respond-to(xl) {
+        font-size: 15px;
+        padding: 7px 10px;
+      }
+
+      // Large tablet
+      @include respond-to(lg) {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+
+      // Tablet
+      @include respond-to(md) {
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+
+      // Mobile
+      @include respond-to(sm) {
+        font-size: 13px;
+        padding: 5px 8px;
+      }
+
+      // Small mobile
+      @include respond-to(xs) {
+        font-size: 12px;
+        padding: 4px 6px;
+        white-space: normal;
+        text-align: center;
+      }
+
+      &:hover {
+        color: $col-primary;
+        background-color: rgba($col-primary, 0.1);
+        transition: 0.3s all;
+      }
+
+      &:focus {
+        outline: 2px solid $col-primary;
+        outline-offset: 2px;
+      }
+    }
+  }
+}
+
+// Extra small screens (320px and below)
+@media (max-width: 320px) {
+  .heading {
+    margin: 10px 0;
+    gap: 8px;
+
+    h2 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .categories {
+      gap: 6px;
+
+      a {
+        font-size: 11px;
+        padding: 3px 5px;
+      }
+    }
+  }
+}
+
+// Touch device optimizations
+@media (hover: none) {
+  .heading .categories a:hover {
+    background-color: transparent;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .heading .categories a {
+    transition: none;
+  }
 }

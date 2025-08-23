@@ -1,0 +1,200 @@
+<div class="heading">
+  <div class="popular-products">
+    <h2>Popular Products</h2>
+  </div>
+  <div class="categories">
+    <a routerLink="/">
+      <span>Cake & Milk</span>
+    </a>
+    <a routerLink="/">
+      <span>Coffees & Teas</span>
+    </a>
+    <a routerLink="/">
+      <span>Pet Foods</span>
+    </a>
+    <a routerLink="/">
+      <span>Meats</span>
+    </a>
+    <a routerLink="/">
+      <span>Vegetables</span>
+    </a>
+    <a routerLink="/">
+      <span>Fruits</span>
+    </a>
+  </div>
+</div>
+
+<section class="products">
+  <div class="row">
+    <!-- Loop products mock data -->
+    @for (item of products; track $index) {
+    <div class="col-xl-2">
+      <div class="product">
+        <div
+          class="tag"
+          *ngIf="item.tagged"
+          [ngClass]="item.tagged.toLowerCase()"
+        >
+          <span>{{ item.tagged }}</span>
+        </div>
+        <div class="product-img">
+          <div class="img">
+            <img [src]="item.image" alt="product1" class="img-fluid" />
+          </div>
+        </div>
+        <div class="product-details">
+          <div class="category">
+            <small>{{ item.category }}</small>
+          </div>
+          <div class="title">
+            <h3>
+              <a routerLink="/">{{ item.title }}</a>
+            </h3>
+          </div>
+          <div class="reviews">
+            <span class="star">
+              <i class="fa fa-star text-warning"></i>
+            </span>
+            <span>({{ item?.avg ?? "0" | number : "1.1-1" }})</span>
+          </div>
+          <div class="seller">
+            <span
+              >By <span>{{ item.seller }}</span></span
+            >
+          </div>
+          <div class="footer">
+            <div class="price">
+              <h4>${{ item.discount_price }}</h4>
+              <div class="discount">
+                <h4>${{ item.price }}</h4>
+              </div>
+            </div>
+            <div class="add-to-cart">
+              <app-button
+                color="primary"
+                buttonText="Add"
+                buttonType="button"
+                size="md"
+              >
+                <svg-icons name="cart-alt"></svg-icons>
+              </app-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</section>
+<section class="daily-best-sells">
+  <div class="heading">
+    <h2>Daily Best Sells</h2>
+    <div class="categories">
+      <a routerLink="/">
+        <span>Cake & Milk</span>
+      </a>
+      <a routerLink="/">
+        <span>Coffees & Teas</span>
+      </a>
+      <a routerLink="/">
+        <span>Pet Foods</span>
+      </a>
+      <a routerLink="/">
+        <span>Vegetables</span>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-2 col-lg-4">
+      <div class="side">
+        <div
+          class="shopnow"
+          style="
+            background-image: url('../../../assets/images/products/best-sells.png');
+          "
+        >
+          <h2>
+            Bring nature & <br />
+            into your <br />
+            home
+          </h2>
+          <app-button buttonText="Shop Now" buttonType="button" color="primary">
+            <svg-icons name="arrow-right"></svg-icons
+          ></app-button>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-10 col-lg-8">
+      <div class="best-sells-products products">
+        <owl-carousel-o [options]="bestSellsOptions">
+          @for (item of products; track item.title) {
+          <ng-template carouselSlide [id]="item.title">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="product mx-2">
+                  <div
+                    class="tag"
+                    *ngIf="item.tagged"
+                    [ngClass]="item.tagged.toLowerCase()"
+                  >
+                    <span>{{ item.tagged }}</span>
+                  </div>
+                  <div class="product-img">
+                    <div class="img">
+                      <img
+                        [src]="item.image"
+                        alt="product1"
+                        class="img-fluid"
+                      />
+                    </div>
+                  </div>
+                  <div class="product-details">
+                    <div class="category">
+                      <small>{{ item.category }}</small>
+                    </div>
+                    <div class="title">
+                      <h3>
+                        <a routerLink="/">{{ item.title }}</a>
+                      </h3>
+                    </div>
+                    <div class="reviews">
+                      <span class="star">
+                        <i class="fa fa-star text-warning"></i>
+                      </span>
+                      <span>({{ item?.avg ?? "0" | number : "1.1-1" }})</span>
+                    </div>
+                    <div class="seller">
+                      <span
+                        >By <span>{{ item.seller }}</span></span
+                      >
+                    </div>
+                    <div class="footer">
+                      <div class="items-sold">
+                        <span>Sold: </span>
+                        <app-progress
+                          [max]="item.quantity"
+                          [value]="75"
+                          color="#3BB77E"
+                        ></app-progress>
+                      </div>
+                      <div class="add-to-cart">
+                        <app-button
+                          color="primary"
+                          buttonText="Add To Cart"
+                          buttonType="button"
+                          size="md"
+                        >
+                        </app-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</section>

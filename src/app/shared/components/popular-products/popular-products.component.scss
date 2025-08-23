@@ -1,0 +1,205 @@
+@use "../../../../assets/themes/theme" as *;
+@use "../../../../assets/themes/responsive" as *;
+
+
+.products {
+  .product {
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid $border-col;
+    position: relative;
+    margin-bottom: 30px;
+    .tag {
+      background-color: #f74b81;
+      padding: 7px 20px;
+      width: 60px;
+      border-top-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.hot {
+        background-color: #f74b81;
+      }
+      &.new {
+        background-color: $col-primary;
+      }
+      &.sale {
+        background-color: $col-blue;
+      }
+    }
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 9px;
+      .category {
+        small {
+          color: $col-secondary;
+          font-size: 12px;
+        }
+      }
+      .title {
+        h3 {
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 19.2px;
+          a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+            text-decoration: none;
+
+            color: #000;
+            font-family: "Quicksand", sans-serif !important;
+            transition: 0.3s all;
+
+            &:hover {
+              color: $col-primary;
+              transition: 0.3s all;
+            }
+          }
+        }
+      }
+      .reviews {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .seller {
+        span {
+          font-size: 14px;
+          span {
+            color: $col-primary;
+          }
+        }
+      }
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .price {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          h4 {
+            font-size: 18px;
+            color: $col-primary;
+            line-height: 24px;
+            font-weight: bold;
+            margin-bottom: 0;
+          }
+          .discount {
+            margin-left: 10px;
+            h4 {
+              font-size: 14px;
+              line-height: 24px;
+              margin-bottom: 0;
+              font-weight: bold;
+              text-decoration: line-through;
+              color: $col-secondary;
+            }
+          }
+        }
+        .add-to-cart {
+          ::ng-deep app-button {
+            button {
+              color: $col-primary;
+              background-color: $col-light-green2;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.daily-best-sells {
+  .side {
+    height: 100%;
+    .shopnow {
+      padding: 60px 50px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      height: 100%;
+      h2 {
+        margin-bottom: 99px;
+        font-size: 40px;
+        line-height: 48px;
+        color: #253d4e;
+        font-weight: bold;
+      }
+      ::ng-deep app-button {
+        button {
+          padding-right: 30px !important;
+          font-weight: bold;
+          &:hover {
+            background-color: transparent;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  .products {
+    position: relative;
+    z-index: 2;
+    margin-top: 30px;
+    .product {
+      .product-details {
+        .footer {
+          display: flex;
+          flex-direction: column;
+          .items-sold {
+            width: 100%;
+            padding: 15px 0;
+          }
+          .add-to-cart {
+            width: 100%;
+            ::ng-deep app-button {
+              button {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    ::ng-deep owl-carousel-o {
+      .owl-nav {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 0;
+        pointer-events: none;
+        .owl-next {
+          border-radius: 100%;
+          pointer-events: auto;
+
+          .next {
+            padding: 10px 11px;
+          }
+        }
+        .owl-prev {
+          border-radius: 100%;
+          pointer-events: auto;
+
+          .prev {
+            padding: 10px 11px;
+          }
+        }
+      }
+    }
+  }
+}

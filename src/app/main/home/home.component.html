@@ -1,28 +1,169 @@
 <div class="container-fluid px-5">
   <section class="hero">
-    <div class="banner">
-      <div class="welcome-text">
-        <h1>Fresh Vegetables <br> Big Discount</h1>
-        <p>Save up to 50% off on your first order!</p>
+    <owl-carousel-o [options]="bannerOptions">
+      <ng-template carouselSlide>
+        <div class="banner">
+          <div class="welcome-text">
+            <h1>
+              Fresh Vegetables <br />
+              Big Discount
+            </h1>
+            <p>Save up to 50% off on your first order!</p>
+          </div>
+          <div class="newsletter">
+            <div class="input">
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              <input
+                type="email"
+                placeholder="Your email address"
+                aria-label="Email address for newsletter subscription"
+                required
+              />
+              <button
+                class="btn btn-success"
+                type="submit"
+                aria-label="Subscribe to newsletter"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="banner">
+          <div class="welcome-text">
+            <h1>
+              Fresh Vegetables <br />
+              Big Discount
+            </h1>
+            <p>Save up to 50% off on your first order!</p>
+          </div>
+          <div class="newsletter">
+            <div class="input">
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+              <input
+                type="email"
+                placeholder="Your email address"
+                aria-label="Email address for newsletter subscription"
+                required
+              />
+              <button
+                class="btn btn-success"
+                type="submit"
+                aria-label="Subscribe to newsletter"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </section>
+
+  <section class="featured">
+    <div class="heading">
+      <h2>Featured Categories</h2>
+      <div class="categories">
+        <a routerLink="/">
+          <span>Cake & Milk</span>
+        </a>
+        <a routerLink="/">
+          <span>Coffees & Teas</span>
+        </a>
+        <a routerLink="/">
+          <span>Pet Foods</span>
+        </a>
+        <a routerLink="/">
+          <span>Vegetables</span>
+        </a>
       </div>
-      <div class="newsletter">
-        <div class="input">
-          <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
-          <input 
-            type="email" 
-            placeholder="Your email address" 
-            aria-label="Email address for newsletter subscription"
-            required
-          />
-          <button class="btn btn-success" type="submit" aria-label="Subscribe to newsletter">
-            Subscribe
-          </button>
+    </div>
+    <div class="category-cards">
+      <owl-carousel-o [options]="categoryOptions">
+        @for (item of categories; track item.name) {
+        <ng-template carouselSlide [id]="item.name">
+          <div class="category" [ngClass]="item.fillColor">
+            <div class="img">
+              <img [src]="item.image" alt="kiwi" />
+            </div>
+            <div class="info">
+              <h6>{{ item.name }}</h6>
+              <small>{{ item.quantity }} Items</small>
+            </div>
+          </div>
+        </ng-template>
+        }
+      </owl-carousel-o>
+    </div>
+  </section>
+
+  <section class="shops">
+    <div class="shop-now">
+      <div class="row">
+        <div class="col-lg-4">
+          <div
+            class="shopnow"
+            style="
+              background-image: url('../../../assets/images/shops/onion-bg.png');
+            "
+          >
+            <h2>
+              Everyday Fresh & <br />
+              Clean with Our <br />
+              Products
+            </h2>
+            <app-button
+              buttonText="Shop Now"
+              buttonType="button"
+              color="primary"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div
+            class="shopnow"
+            style="
+              background-image: url('../../../assets/images/shops/strawberry-juice-bg.png');
+            "
+          >
+            <h2>
+              Make your breakfast <br />
+              Healthy and Easy
+            </h2>
+            <app-button
+              buttonText="Shop Now"
+              buttonType="button"
+              color="primary"
+            />
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div
+            class="shopnow"
+            style="
+              background-image: url('../../../assets/images/shops/veggies-bg.png');
+            "
+          >
+            <h2>
+              The best Organic <br />
+              Products Online
+            </h2>
+            <app-button
+              buttonText="Shop Now"
+              buttonType="button"
+              color="primary"
+            />
+          </div>
         </div>
       </div>
     </div>
   </section>
-  
-  <section class="featured">
-    <h2>Featured Categories</h2>
+  <!-- Popular Products -->
+  <section class="popular-products">
+   <app-popular-products>
+    
+   </app-popular-products>
   </section>
 </div>

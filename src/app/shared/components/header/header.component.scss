@@ -1,31 +1,7 @@
 @use "../../../../assets/themes/theme" as *;
 
-// Responsive breakpoints
-$breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px,
-);
-
-// Mixin for media queries
-@mixin respond-to($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (max-width: #{map-get($breakpoints, $breakpoint) - 1px}) {
-      @content;
-    }
-  }
-}
-
-@mixin respond-from($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
-      @content;
-    }
-  }
-}
+// Responsiveness theme
+@use '../../../../assets/themes/responsive' as *;
 
 // Top Nav
 .top-nav {
