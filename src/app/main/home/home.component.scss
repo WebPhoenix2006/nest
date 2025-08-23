@@ -1,6 +1,40 @@
 // Use theme file
 @use '../../../assets/themes/theme' as *;
 
+// Responsive breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// Mixin for media queries
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: #{map-get($breakpoints, $breakpoint) - 1px}) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-from($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  }
+}
+
+.container-fluid {
+  @include respond-to(sm) {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
 .hero {
   .banner {
     padding: 90px;
@@ -8,53 +42,469 @@
     background-image: url("../../../assets/images/banner/banner.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center center;
     margin-top: 30px;
     margin-bottom: 55px;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    // Add overlay for better text readability
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 30px;
+      pointer-events: none;
+    }
+
+    // Tablet and below adjustments
+    @include respond-to(lg) {
+      padding: 60px 40px;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      min-height: 350px;
+      border-radius: 20px;
+
+      &::before {
+        border-radius: 20px;
+      }
+    }
+
+    // Mobile adjustments
+    @include respond-to(md) {
+      padding: 40px 30px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+      min-height: 300px;
+      border-radius: 15px;
+      text-align: center;
+
+      &::before {
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    @include respond-to(sm) {
+      padding: 30px 20px;
+      margin-top: 10px;
+      margin-bottom: 25px;
+      min-height: 280px;
+      border-radius: 12px;
+
+      &::before {
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    // Very small screens
+    @include respond-to(xs) {
+      padding: 25px 15px;
+      min-height: 250px;
+      border-radius: 10px;
+
+      &::before {
+        border-radius: 10px;
+      }
+    }
+
     .welcome-text {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 40px;
+
+      @include respond-to(md) {
+        margin-bottom: 30px;
+      }
+
+      @include respond-to(sm) {
+        margin-bottom: 25px;
+      }
+
       h1 {
         font-size: 72px;
         font-weight: bold;
         line-height: 72px;
         margin-bottom: 31px;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+        // Large desktop
+        @include respond-to(xxl) {
+          font-size: 64px;
+          line-height: 64px;
+          margin-bottom: 28px;
+        }
+
+        // Desktop
+        @include respond-to(xl) {
+          font-size: 56px;
+          line-height: 56px;
+          margin-bottom: 25px;
+        }
+
+        // Large tablet
+        @include respond-to(lg) {
+          font-size: 48px;
+          line-height: 50px;
+          margin-bottom: 22px;
+        }
+
+        // Tablet
+        @include respond-to(md) {
+          font-size: 36px;
+          line-height: 38px;
+          margin-bottom: 20px;
+        }
+
+        // Mobile
+        @include respond-to(sm) {
+          font-size: 28px;
+          line-height: 30px;
+          margin-bottom: 15px;
+        }
+
+        // Small mobile
+        @include respond-to(xs) {
+          font-size: 24px;
+          line-height: 26px;
+          margin-bottom: 12px;
+        }
+
+        br {
+          @include respond-to(sm) {
+            display: none;
+          }
+        }
       }
-      p{
+
+      p {
         font-size: 30px;
-        line-height: 24px;
+        line-height: 32px;
         font-weight: normal;
         margin-bottom: 65px;
+        color: #fff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+
+        // Large desktop
+        @include respond-to(xxl) {
+          font-size: 26px;
+          line-height: 28px;
+          margin-bottom: 55px;
+        }
+
+        // Desktop
+        @include respond-to(xl) {
+          font-size: 24px;
+          line-height: 26px;
+          margin-bottom: 50px;
+        }
+
+        // Large tablet
+        @include respond-to(lg) {
+          font-size: 20px;
+          line-height: 24px;
+          margin-bottom: 45px;
+        }
+
+        // Tablet
+        @include respond-to(md) {
+          font-size: 18px;
+          line-height: 22px;
+          margin-bottom: 35px;
+        }
+
+        // Mobile
+        @include respond-to(sm) {
+          font-size: 16px;
+          line-height: 20px;
+          margin-bottom: 25px;
+        }
+
+        // Small mobile
+        @include respond-to(xs) {
+          font-size: 14px;
+          line-height: 18px;
+          margin-bottom: 20px;
+        }
       }
     }
-    .newsletter{
-        display: flex;
-        align-items: center;
+
+    .newsletter {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+
+      @include respond-to(md) {
+        justify-content: center;
+      }
+
+      .input {
         position: relative;
-        .input{
-            position: relative;
-            input{
-                padding: 18px 45px;
-                border-radius: 50px;
-                border: none;
-                min-width: 450px;
-                font-size: 16px;
-                &:focus{
-                    outline: none;
-                }
-            }
-            i{
-                position: absolute;
-                top: 50%;
-                left: 20px;
-                transform: translateY(-50%);
-            }
-            .btn{
-                background-color: $col-primary !important;
-                padding: 18px 30px;
-                border-radius: 50px;
-                border: none;
-                position: absolute;
-                left: calc(450px - 128.36px);
-            }
+        width: 100%;
+        max-width: 500px;
+
+        @include respond-to(lg) {
+          max-width: 450px;
         }
+
+        @include respond-to(md) {
+          max-width: 100%;
+          width: 100%;
+        }
+
+        input {
+          padding: 18px 45px;
+          border-radius: 50px;
+          border: none;
+          width: 100%;
+          min-width: 350px;
+          font-size: 16px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+
+          @include respond-to(xl) {
+            min-width: 400px;
+            padding: 16px 40px;
+          }
+
+          @include respond-to(lg) {
+            min-width: 350px;
+            padding: 15px 40px;
+            font-size: 15px;
+          }
+
+          @include respond-to(md) {
+            min-width: 300px;
+            padding: 14px 45px;
+            font-size: 14px;
+          }
+
+          @include respond-to(sm) {
+            min-width: 280px;
+            padding: 12px 40px;
+            font-size: 14px;
+          }
+
+          @include respond-to(xs) {
+            min-width: 250px;
+            padding: 12px 35px;
+            font-size: 13px;
+          }
+
+          &:focus {
+            outline: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+          }
+
+          &::placeholder {
+            color: #999;
+            font-size: inherit;
+
+            @include respond-to(sm) {
+              font-size: 13px;
+            }
+          }
+        }
+
+        i {
+          position: absolute;
+          top: 50%;
+          left: 20px;
+          transform: translateY(-50%);
+          color: #666;
+          font-size: 16px;
+
+          @include respond-to(sm) {
+            left: 15px;
+            font-size: 14px;
+          }
+        }
+
+        .btn {
+          background-color: $col-primary !important;
+          padding: 18px 30px;
+          border-radius: 50px;
+          border: none;
+          position: absolute;
+          top: 50%;
+          right: 3px;
+          transform: translateY(-50%);
+          font-weight: 600;
+          font-size: 14px;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+
+          @include respond-to(xl) {
+            padding: 16px 25px;
+            right: 3px;
+          }
+
+          @include respond-to(lg) {
+            padding: 15px 22px;
+            font-size: 13px;
+            right: 3px;
+          }
+
+          @include respond-to(md) {
+            padding: 14px 20px;
+            font-size: 13px;
+            right: 3px;
+          }
+
+          @include respond-to(sm) {
+            padding: 12px 18px;
+            font-size: 12px;
+            right: 3px;
+          }
+
+          @include respond-to(xs) {
+            padding: 12px 15px;
+            font-size: 11px;
+            right: 2px;
+          }
+
+          &:hover {
+            background-color: darken($col-primary, 10%) !important;
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 4px 15px rgba($col-primary, 0.3);
+          }
+
+          &:active {
+            transform: translateY(-50%) scale(0.98);
+          }
+        }
+      }
+    }
+  }
+}
+
+.featured {
+  margin-top: 30px;
+
+  @include respond-to(lg) {
+    margin-top: 25px;
+  }
+
+  @include respond-to(md) {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  @include respond-to(sm) {
+    margin-top: 15px;
+  }
+
+  h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: $col-secondary;
+    margin-bottom: 30px;
+
+    @include respond-to(xl) {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    @include respond-to(lg) {
+      font-size: 28px;
+      margin-bottom: 22px;
+    }
+
+    @include respond-to(md) {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    @include respond-to(sm) {
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    @include respond-to(xs) {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+// Animation for hero section
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero .banner .welcome-text {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero .banner .newsletter {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+// Ensure responsive images within banner
+.hero .banner {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Fix for very small screens
+@media (max-width: 320px) {
+  .hero .banner {
+    padding: 20px 12px;
+    min-height: 220px;
+
+    .welcome-text {
+      h1 {
+        font-size: 20px;
+        line-height: 22px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 12px;
+        line-height: 16px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .newsletter .input {
+      input {
+        min-width: 200px;
+        padding: 10px 30px;
+        font-size: 12px;
+      }
+
+      i {
+        left: 12px;
+        font-size: 12px;
+      }
+
+      .btn {
+        padding: 10px 12px;
+        font-size: 10px;
+        right: 2px;
+      }
     }
   }
 }
